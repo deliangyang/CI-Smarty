@@ -21,6 +21,8 @@ if (isset($_GET['c']) && isset($_GET['m'])) {
 
 $class = str_replace('.', '', trim($class, '/'));
 
+$error_404 = false;
+
 if (file_exists(__DIR__ . '/../controller/' . ucfirst($class) . '.php')) {
 
     require_once(__DIR__ . '/../controller/' . ucfirst($class) . '.php');
@@ -31,6 +33,16 @@ if (file_exists(__DIR__ . '/../controller/' . ucfirst($class) . '.php')) {
         $class->smarty = new Smarty();
         $class->$method();
 
+    } else {
+        $error_404 = true;
     }
 
+} else {
+    $error_404 = true;
+}
+
+if ($error_404) {
+    echo '<h2>page not found!</h2>';
+    header('HTTP/1.0 404 Not Found');
+    exit;
 }
