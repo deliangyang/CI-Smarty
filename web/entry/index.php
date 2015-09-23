@@ -29,9 +29,18 @@ if (file_exists(__DIR__ . '/../controller/' . ucfirst($class) . '.php')) {
 
     if (class_exists($class) && method_exists($class, $method)) {
 
+        # 反射测试
+//        $test = new ReflectionClass('Test');
+//
+//        foreach ($test->getProperties() as $property) {
+//            var_dump($property->getName());
+//        }
+
         $class = new $class();
         $class->smarty = new Smarty();
         $class->$method();
+
+
 
     } else {
         $error_404 = true;
