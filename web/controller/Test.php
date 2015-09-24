@@ -14,6 +14,9 @@ class Test extends Controller
     public function test() {
 
 
+        #throw new Exception('test', 8000);
+
+
         $data = [
             'title'     => 'this is the title',
             'content'   => 'this is the content',
